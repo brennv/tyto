@@ -3,7 +3,7 @@ import yaml
 
 
 def load_data():
-    with open('tests/data.yaml') as f:
+    with open('tests/data.yml') as f:
         data = yaml.load(f)
     return data
 

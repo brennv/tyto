@@ -2,7 +2,7 @@ from tyto.score import simple_score
 import yaml
 
 
-with open('tests/data.yaml') as f:
+with open('tests/data.yml') as f:
     data = yaml.load(f)
 
 passage = data.pop('passage').lower()
