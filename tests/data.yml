@@ -51,8 +51,8 @@ offset_insert:
   score: 5/19
 
 offset_omit:
-   words: the  brown dog
-   score: 3/19
+  words: the  brown dog
+  score: 3/19
 
 offset_insert_omit:
   words: the  SUPER brown dog
@@ -60,4 +60,4 @@ offset_insert_omit:
 
 offset_multi_insert_omit:
   words: the  SUPER brown dog  LEAPED over  lazy fox
-  score: 3/4
+  score: 6/19
