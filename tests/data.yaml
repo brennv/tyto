@@ -1,0 +1,63 @@
+# Book passage
+
+passage: the quick brown FOX jumped over the lazy dog
+         then the quick brown DOG jumped over the lazy fox
+
+
+# Test case scenarios
+
+perfect:
+  words: the quick brown fox
+  score: 4/19
+
+insert:
+  words: the SUPER quick brown fox
+  score: 4/19  # TODO double-check this score is correct
+
+omit:
+  words: the  brown fox
+  score: 3/19
+
+insert_omit:
+  words: the SUPER  brown fox
+  score: 3/19
+
+multi_insert:
+  words: the quick OH HI MOM brown fox
+  score: 4/19
+
+multi_omit:
+  words: the  brown  jumped
+  score: 3/19
+
+multi_insert_omit:
+  words: the  OH HI MOM  fox jumped
+  score: 3/19
+
+all_same:
+  words: the quick brown fox jumped over the lazy dog then the quick brown dog jumped over the lazy fox
+  score: 19/19
+
+all_different:
+  words: lorem ipsum do sit amet con adip elit sed do haha smod temp inci ut labore et dolo magna ali
+  score: 0/19
+
+offset:
+  words: the quick brown dog jumped
+  score: 5/19
+
+offset_insert:
+  words: the SUPER quick brown dog jumped
+  score: 5/19
+
+offset_omit:
+   words: the  brown dog
+   score: 3/19
+
+offset_insert_omit:
+  words: the  SUPER brown dog
+  score: 3/19
+
+offset_multi_insert_omit:
+  words: the  SUPER brown dog  LEAPED over  lazy fox
+  score: 3/4
