@@ -15,7 +15,7 @@
   <div class="container" style="padding-top: 80px;">
 
   <div class="row">
-    <div class="one-half column">
+    <div >
       <form action="{{ url_for('index') }}" method="post">
         <label>Enter a transcript.</label>
         <input type="text" name="transcript">
@@ -24,9 +24,12 @@
         <br><input type="submit">
       </form>
     </div>
-    <div class="one-half column">
-        <br>
-        <br><center><h3 style="color: blue;">Score: {{ result|safe }}</h3></center>
+  </div>
+    <div class="row">
+    <div >
+        <br><strong>{{ transcript|safe }}</strong>
+        <br>{{ passage|safe }}
+        <br><center><h4 style="color: blue;">Score: {{ result|safe }}</h4></center>
     </div>
   </div>
 

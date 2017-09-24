@@ -16,7 +16,7 @@ def index():
         transcript = request.form['transcript']
         passage = request.form['passage']
         result = score(transcript, passage)
-        print(result)
+        result = str(result)[:6]
     session['transcript'], session['passage'] = transcript, passage
     session['result'] = result
     return render_template('index.html', transcript=transcript,
