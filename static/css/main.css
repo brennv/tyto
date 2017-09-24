@@ -12,7 +12,7 @@ label {
     float: left;
 }
 
-input {
+input, button {
     width: 100%;
     box-sizing:border-box;
 }

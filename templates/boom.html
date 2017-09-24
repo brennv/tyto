@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="row">
+  <br><strong>🦉 {{ transcript|safe }}</strong>
+  <br>🦉 {{ passage|safe }}
+  <br>
+  <br><center><h5>Score: {{ result|safe }}</h5></center>
+</div>
+
+<div class="row">
+  <span>
+    <a href={{ url_for('index') }}><button type="button">Try again?</button></a>
+  </span>
+</div>
+
+{% endblock %}

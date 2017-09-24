@@ -1,38 +1,14 @@
-<!DOCTYPE HTML>
-<head>
-  <title>Text scoring</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon-tree.ico" />
-  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-  <link href="{{ url_for('static', filename='css/normalize.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='css/skeleton.css') }}" rel="stylesheet">
-  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-  <script src="{{ url_for('static', filename='js/Chart.min.js') }}"></script>
-</head>
-<body>
+{% extends "layout.html" %}
+{% block body %}
 
-  <div class="container" style="padding-top: 80px;">
-
-  <div class="row">
-    <div >
-      <form action="{{ url_for('index') }}" method="post">
-        <label>Enter a transcript.</label>
-        <input type="text" name="transcript">
-        <label>Enter a passage.</label>
-        <input type="text" name="passage">
-        <br><input type="submit">
-      </form>
-    </div>
-  </div>
-    <div class="row">
-    <div >
-        <br><strong>🦉 {{ transcript|safe }}</strong>
-        <br>🦉 {{ passage|safe }}
-        <br><center><h4>Score: {{ result|safe }}</h4></center>
-    </div>
-  </div>
-
+<div class="row">
+  <form action="{{ url_for('index') }}" method="post">
+    <label>Enter a transcript.</label>
+    <input type="text" name="transcript">
+    <label>Enter a passage.</label>
+    <input type="text" name="passage">
+    <br><input type="submit">
+  </form>
 </div>
-</body>
-</html>
+
+{% endblock %}
