@@ -50,6 +50,8 @@ def score(transcript, passage):
     transcript = transcript.lower().replace('  ', ' ').split()
     passage = passage.lower().replace('  ', ' ').split()
     passage_length = len(passage)
+    if not passage:
+        return -1  # TODO raise PassageValueError
     if transcript == passage:
         return 1
     for i in range(passage_length):
