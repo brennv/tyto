@@ -7,7 +7,7 @@ install:
   - pip install pytest pytest-cov pylama
 
 script: python -m pytest --durations=10 --cov=tyto/ tests/
-# after_success: bash <(curl -s https://codecov.io/bash)
+after_success: bash <(curl -s https://codecov.io/bash)
 after_script:
   - python -m pylama -i E501 tyto/ || true
   - grep --exclude-dir=.git -EInr "TODO|LOL" . 2>/dev/null
