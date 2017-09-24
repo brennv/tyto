@@ -4,60 +4,109 @@ passage: the quick brown FOX jumped over the lazy dog
          then the quick brown DOG jumped over the lazy fox
 
 
+# Definitions
+
+## passage score = count of correct transcript words / count of passage words
+## passage slice score = count of correct transcript words / count of words in passage slice
+
+
 # Test case scenarios
 
-perfect:
+partial:
   words: the quick brown fox
   score: 4/19
+  # map: 0, 1, 2, 3
+  # inserts: 0
+  # ommits: 0
+  # correct: 4
+  # length: 4
+  # slice: 0:3
+  # slice score: 4/4
 
 insert:
   words: the SUPER quick brown fox
-  score: 4/19  # TODO double-check this score is correct
+  score: 4/19
+  map: 0, N, 1, 2, 3
 
 omit:
   words: the  brown fox
   score: 3/19
+  map: 0, 2, 3
 
 insert_omit:
   words: the SUPER  brown fox
   score: 3/19
+  map: 0, N, 2, 3
 
 multi_insert:
   words: the quick OH HI MOM brown fox
   score: 4/19
+  map: 0, 1, N, N, N, 2, 3
 
 multi_omit:
   words: the  brown  jumped
   score: 3/19
+  map: 0, 2, 4
 
 multi_insert_omit:
   words: the  OH HI MOM  fox jumped
   score: 3/19
+  map: 0, N, N, N, 3, 4
 
 all_same:
-  words: the quick brown fox jumped over the lazy dog then the quick brown dog jumped over the lazy fox
+  words: the quick brown FOX jumped over the lazy dog then the quick brown DOG jumped over the lazy fox
   score: 19/19
+  map: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
 
 all_different:
   words: lorem ipsum do sit amet con adip elit sed do haha smod temp inci ut labore et dolo magna ali
   score: 0/19
+  map: N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N
 
 offset:
   words: the quick brown dog jumped
   score: 5/19
+  map: 10, 11, 12, 13, 14
 
 offset_insert:
   words: the SUPER quick brown dog jumped
   score: 5/19
+  map: 10, N, 11, 12, 13, 14
 
 offset_omit:
   words: the  brown dog
   score: 3/19
+  map: 10, 12, 13
 
 offset_insert_omit:
   words: the  SUPER brown dog
   score: 3/19
+  map: 10, N, 12, 13
 
 offset_multi_insert_omit:
   words: the  SUPER brown dog  LEAPED over  lazy fox
   score: 6/19
+  map: 10, N, 12, 13, N, 15, 17, 18
+
+
+# Passage index
+
+# 0  the
+# 1  quick
+# 2  brown
+# 3  fox
+# 4  jumped
+# 5  over
+# 6  the
+# 7  lazy
+# 8  dog
+# 9  then
+# 10 the
+# 11 quick
+# 12 brown
+# 13 dog
+# 14 jumped
+# 15 over
+# 16 the
+# 17 lazy
+# 18 fox
