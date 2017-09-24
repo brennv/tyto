@@ -1,1 +1,10 @@
+# text data
 PyYAML==3.12
+
+# tests
+pytest==3.2.2
+pytest-cov==2.5.1
+
+# demo page
+Flask==0.12.2
+gunicorn==19.7.1
