@@ -4,7 +4,7 @@
 
 # tyto
 
- Text comparison analytics and scoring
+🦉 Text comparison analytics and scoring
 
 # Usage  
 
