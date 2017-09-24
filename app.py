@@ -20,9 +20,9 @@ def index():
         result = str(result)[:6]
         session['transcript'], session['passage'] = transcript, passage
         session['result'] = result
+        print(transcript, passage, result)
         return render_template('boom.html', transcript=transcript,
                                passage=passage, result=result)
-    print(transcript, passage, result)
     return render_template('index.html', transcript=transcript,
                            passage=passage, result=result)
 
