@@ -6,7 +6,9 @@ def listify(string):
 
 
 def parse_passage(passage):
-    """ Create a dict from a passage using substrings as keys to possible indice. """
+    """ Find all possible slices of a word list where words appear in the
+    expected order. Return a dict of substrings matching substring location to
+    possible indexes in the word list. """
     slice_combinations = []
     substring_map = {}
     for n in range(len(passage)):
