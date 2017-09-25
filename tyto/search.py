@@ -5,12 +5,24 @@ def listify(string):
     return string.lower().replace('  ', ' ').split()
 
 
-def parse_passage(passage):
+def make_substring_map(string):
     """ Find all possible slices of a word list where words appear in the
     expected order. Return a dict of substrings matching substring location to
-    possible indexes in the word list. """
+    possible indexes in the word list.
+
+    For example:
+
+        make_substring_map('the cat show')
+
+    Returns:
+
+        {'the': [0], 'cat': [1], 'show': [2, 1], 'the cat': [0], 'cat show': [1]}
+
+    Here 'show' is [2, 1] because it could be preceeded by ['the', 'cat'] or ['the cat'].
+    """
     slice_combinations = []
     substring_map = {}
+    passage = listify(string)
     for n in range(len(passage)):
         for m in range(n, 0, -1):
             offset, split = passage[:m], passage[m:]
@@ -47,6 +59,8 @@ def get_maps(string, substring_map):
     return maps
 
 
-transcript, passage = listify(transcript), listify(passage)
-substring_map = parse_passage(passage)
-maps = get_maps(string, substring_map)  #
+# transcript, passage = listify(transcript), listify(passage)
+passage = listify('the cat show')
+substring_map = make_substring_map(passage)
+print(substring_map)
+# maps = get_maps(string, substring_map)  #
