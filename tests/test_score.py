@@ -50,10 +50,8 @@ def test_score_with_flip_flopping_and_repeated_words():
 def test_score_with_flip_flopping_and_repeated_words():
     transcript = 'By default capturing is DONE by intercepting writes to low level file descriptors'
     passage =    'By default capturing is by intercepting writes DONE to low level file descriptors'
-    expected_score = 10/13  # BUG: Working as designed but seems like it should be 12/13
-                            # Note: this is the result of successive/order based matching
-    expected_maps = [[0, 1, 2, 3, 7, -1, 8, 9, 10, 11, 12]]  # TODO research other best-fit/distance algos
-                                                             # Levenstein distance check might catch this
+    expected_score = 10/13  # BUG? Working as designed but seems like it should be 12/13
+    expected_maps = [[0, 1, 2, 3, 7, -1, 8, 9, 10, 11, 12]]
     score, maps = get_score(transcript, passage)
     assert maps == expected_maps
     assert score == expected_score
