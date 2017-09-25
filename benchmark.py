@@ -1,6 +1,6 @@
 from timeit import timeit
 
-setup ="""
+setup = """
 from tests.test_score import data, passage
 
 def timed_run():
