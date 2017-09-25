@@ -1,4 +1,5 @@
-from tyto.score import score
+from tyto.score import map_and_score
+from tyto.format import markup_results
 from flask import Flask, render_template, request, session
 import uuid
 
@@ -9,22 +10,16 @@ app.secret_key = uuid.uuid4().hex
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    transcript = session.get('transcript', '')
-    passage = session.get('passage', '')
-    result = session.get('result', '')
     if request.method == 'POST':
-    # if request.form:
-        transcript = request.form['transcript']
-        passage = request.form['passage']
-        result = score(transcript, passage)
-        result = str(result)[:6]
-        session['transcript'], session['passage'] = transcript, passage
-        session['result'] = result
-        print(transcript, passage, result)
-        return render_template('boom.html', transcript=transcript,
-                               passage=passage, result=result)
-    return render_template('index.html', transcript=transcript,
-                           passage=passage, result=result)
+        transcript, passage = request.form['transcript'], request.form['passage']
+        if transcript and passage:
+            score, maps = map_and_score(transcript, passage)
+            score = str(score)[:6]
+            session['transcript'], session['passage'] = transcript, passage
+            print(transcript, passage, score)
+            results = markup_results(transcript, passage, maps)
+            return render_template('grade.html', results=results, score=score)
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
