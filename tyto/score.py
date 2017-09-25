@@ -29,7 +29,7 @@ def inspect_slice(transcript, passage, i, step):
     return map_, hits, fit
 
 
-def map_and_score(transcript, passage):
+def get_score(transcript, passage):
     """ Given two strings, transcript and passage, split them into a list and
     interate over the passage while inspecting a slice of increasing size.
     Determine the score using best fit and record the mappings for testing. """
