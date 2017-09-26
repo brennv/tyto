@@ -9,6 +9,30 @@ import yaml
 # TODO add tests for expected markup result data
 
 
+def test_score_with_repeat_match_words():
+    transcript = 'Lorem ipsum sit amet sed sed hi ho'
+    passage =    'Lorem ipsum dolor sit amet sed sed hi ho'
+    expected_score = 8/9
+    expected_maps = [[0, 1, 3, 4, 5, 6, 7, 8]]
+    score, maps = get_score(transcript, passage)
+    assert maps == expected_maps
+    assert score == expected_score
+    results = markup_results(transcript, passage, maps)
+    assert len(results) == 1
+
+
+def test_score_with_multiple_repeat_match_words():
+    transcript = 'Lorem ipsum sit amet sed sed sed hi ho'
+    passage =    'Lorem ipsum dolor sit amet sed sed sed hi ho'
+    expected_score = 9/10
+    expected_maps = [[0, 1, 3, 4, 5, 6, 7, 8, 9]]
+    score, maps = get_score(transcript, passage)
+    assert maps == expected_maps
+    assert score == expected_score
+    results = markup_results(transcript, passage, maps)
+    assert len(results) == 1
+
+
 def test_score_with_flip_flopping():
     transcript = 'the quick bird the quick ballon'
     passage =    'the quick cat the quick chat'
