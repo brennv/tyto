@@ -30,9 +30,9 @@ def inspect_slice(transcript, passage, i, step):
 
 
 def get_score(transcript, passage):
-    """ Given two strings, transcript and passage, split them into a list and
+    """ Given two strings, transcript and passage, split them into lists and
     interate over the passage while inspecting a slice of increasing size.
-    Determine the score using best fit and record the mappings for testing. """
+    Return the score and associated mappings. """
     maps = []
     fit_max, hit_count_max = 0, 0
     transcript, passage = listify(transcript), listify(passage)
@@ -43,7 +43,7 @@ def get_score(transcript, passage):
         return 1, [list(range(passage_length))]
     for i in range(passage_length):
         step = 0
-        # Commance inspecting chunks while chunks are the appropriate size
+        # Only inspect chunks while chunks are the appropriate size
         while i + step < passage_length and hit_count_max < passage_length - i:
             step += 1
             if step >= hit_count_max:  # Skip slices smaller than max observed
@@ -56,7 +56,7 @@ def get_score(transcript, passage):
                     maps = [map_]
                 if len(hits) == len(transcript):
                     break
-            # Stop searching when there's no common words
+            # Stop searching when there's no common elements
             if i == 0 and max(maps[0]) < 0 and len(maps[0]) == passage_length:
                 return 0, maps
     score = hit_count_max/passage_length
