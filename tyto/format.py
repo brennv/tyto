@@ -1,4 +1,4 @@
-# Word by word styling for the results
+from concurrent.futures import ThreadPoolExecutor
 
 
 def strike(string):
@@ -28,7 +28,8 @@ def format_passage(passage, map_):
 
 def markup_results(transcript, passage, maps):
     results = []
-    for map_ in maps:
-        results.append({'transcript': format_transcript(transcript, map_),
-                        'passage': format_passage(passage, map_)})
+    with ThreadPoolExecutor() as executor:
+        for map_ in maps:
+            results += [{'transcript': format_transcript(transcript, map_),
+                         'passage': format_passage(passage, map_)}]
     return results
