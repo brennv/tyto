@@ -13,12 +13,14 @@ def format_transcript(transcript, map_):
     transcript = transcript.lower().replace('  ', ' ').split()
     word_map = dict(zip(map_, transcript))
     strings = [word if i >= 0 else strike(word) for i, word in word_map.items()]
+    strings = strings.replace('</strike> <strike style="color: red;">', ' ')
     return ' '.join(strings)
 
 
 def format_passage(passage, map_):
     passage = passage.lower().replace('  ', ' ').split()
     strings = [word if i in map_ else bold(word) for i, word in enumerate(passage)]
+    strings = strings.replace('</strong> <strong style="color: red;">', ' ')
     return ' '.join(strings)
 
 
@@ -28,4 +30,8 @@ def markup_results(transcript, passage, maps):
         for map_ in maps:
             results += [{'transcript': format_transcript(transcript, map_),
                          'passage': format_passage(passage, map_)}]
+    print(results)
     return results
+
+
+# TODO format blocks of like formatted words instead of individual words

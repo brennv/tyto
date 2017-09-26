@@ -15,7 +15,7 @@ def index():
     if request.method == 'POST':
         transcript, passage = request.form['transcript'], request.form['passage']
         if transcript and passage:
-            print(transcript, passage)
+            print(transcript, '||', passage)
             score, maps = get_score(transcript, passage)
             print(score, maps)
             score = str(score)[:6]
