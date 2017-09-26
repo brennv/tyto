@@ -15,10 +15,11 @@ def index():
     if request.method == 'POST':
         transcript, passage = request.form['transcript'], request.form['passage']
         if transcript and passage:
+            print(transcript, passage)
             score, maps = get_score(transcript, passage)
             score = str(score)[:6]
             session['transcript'], session['passage'] = transcript, passage
-            print(transcript, passage, score)
+            print(score)
             results = markup_results(transcript, passage, maps)
             return render_template('grade.html', results=results, score=score)
     return render_template('index.html')
