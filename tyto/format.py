@@ -30,7 +30,6 @@ def markup_results(transcript, passage, maps):
         for map_ in maps:
             results += [{'transcript': format_transcript(transcript, map_),
                          'passage': format_passage(passage, map_)}]
-    print(results)
     return results
 
 

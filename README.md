@@ -18,7 +18,7 @@ Use it to compare actual text versus expected:
 ```python
 from tyto.score import get_score
 
-actual_text = 'hello wolrd'
+actual_text = 'hello word'
 expected_text = 'hello world'
 
 score, maps = get_score(actual_text, expected_text)
