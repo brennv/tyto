@@ -14,18 +14,25 @@ def inspect_slice(transcript, passage, i, step):
     found in the slice as well as a negative index for words not found. """
     hits, map_ = [], []
     reverse_index = 0
+    previous_hit_word = ''
     chunk = passage[i:i + step]
     for word in transcript:
-        if word in chunk[len(hits):]:  # Re-slice chunk to accomadate words already matched
-            index = chunk[len(hits):].index(word) + i + len(hits)
+        if word == previous_hit_word:
+            rechunk = chunk[len(hits) - 1:]
+        else:
+            rechunk = chunk[len(hits):]
+        if word in rechunk:  # Re-sliced chunk used accomadate words already matched
+            index = rechunk.index(word) + i + len(hits)
             if not hits or index > max(hits):  # Only match words presented in the right order
                 hits.append(index)
                 map_.append(index)
+                previous_hit_word = word
         else:
             reverse_index -= 1
             map_.append(reverse_index)  # Track extra words in transcript with a negative index
         hit_count = len(hits)
         fit = hit_count * (hit_count/len(chunk))  # Ratio of matches over chunk size, times number of matches
+        print(fit)
     return map_, hits, fit
 
 
