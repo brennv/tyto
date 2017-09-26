@@ -17,9 +17,9 @@ def index():
         if transcript and passage:
             print(transcript, passage)
             score, maps = get_score(transcript, passage)
+            print(score, maps)
             score = str(score)[:6]
             session['transcript'], session['passage'] = transcript, passage
-            print(score)
             results = markup_results(transcript, passage, maps)
             return render_template('grade.html', results=results, score=score)
     return render_template('index.html')
