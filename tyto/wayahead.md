@@ -2,9 +2,8 @@
 
 Rolling window
 - chunk across the passage looking for best fit
-- TODO gain efficiencies by adapting a modified z algorithm
 
-## Way ahead
+## Other ideas
 
 Density mapping
 - create map of transcript words found in passage
